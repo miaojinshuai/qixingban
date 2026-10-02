@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>七星组榜 · 23 机电一体化“七星班”</title>
+<meta name="description" content="七个星阵组的过程性积分榜：课堂参与、实训实践、体锻健康、班级服务、非遗传承、文明礼仪六维综合，学业考试成绩不计入。">
+<link rel="icon" href="assets/img/badge.jpg">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要内容</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html">
+      <img src="assets/img/badge.jpg" alt="七星班班徽">
+      <span class="t"><b>23 机电一体化“七星班”</b><span>踏星笃行　智工守规</span></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="展开导航" aria-expanded="false"><span></span></button>
+    <nav class="nav" aria-label="站点导航">
+      <a href="index.html">首页</a>
+      <a href="plan.html">建设方案</a>
+      <a href="groups.html">七星组榜</a>
+      <a href="growth.html">成长进步</a>
+      <a href="honor.html">荣誉空间</a>
+      <a href="activities.html">活动风采</a>
+      <a href="teacher.html">教师管理</a>
+      <a href="student.html">学生自查</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-head" data-watermark="列阵同心">
+  <div class="wrap">
+    <p class="crumb"><a href="index.html">首页</a> / 七星组榜</p>
+    <h1>七星组榜 · 列阵同心</h1>
+    <p class="desc">七个星阵组按六维过程性表现计分。比的不只是分数，更是谁把班级服务、体锻健康和非遗传承真正做起来了。</p>
+  </div>
+</section>
+
+<main id="main">
+
+  <section class="section section-tight">
+    <div class="wrap">
+      <div class="note note-gold reveal">
+        <span class="ic">!</span>
+        <p class="mb0" id="ruleText"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tight">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">当前榜位</span>
+        <h2>七个星阵组综合积分</h2>
+        <p class="sub">综合积分 = 六维之和（满分 600）。右侧“进步”为该组人均七维成长幅度，用来提醒：位置会变，进步才是硬指标。</p>
+      </div>
+      <div class="rank-list reveal" id="rankList"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">六维对比</span>
+        <h2>把六个维度拆开看</h2>
+        <p class="sub">没有哪个组六项全占优。有的组实训实践强、有的组非遗传承强——组榜的意义是让每一项长处都被看见。</p>
+      </div>
+      <div class="chart-box reveal">
+        <h3>各组六维得分对比</h3>
+        <p class="hint">满分 100 · 按组排列，色块对应维度</p>
+        <div id="groupBars"></div>
+        <div class="chart-legend" id="groupLegend"></div>
+      </div>
+
+      <div class="table-wrap mt24 reveal">
+        <table class="tb">
+          <caption>七星组六维积分明细（按综合积分排序）</caption>
+          <thead id="detailHead"></thead>
+          <tbody id="detailBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">组内明细</span>
+        <h2>每个组的家底</h2>
+        <p class="sub">组长负责轮值编排与任务分发；组内按“活动轮包 + 权责自负”承担班级事务。</p>
+      </div>
+      <div class="grid g2 reveal" id="groupCards"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="motto">踏星笃行　智工守规</div>
+        <p>23 机电一体化“七星班”班级建设展示平台：育人图景 · 七星组榜 · 成长档案 · 荣誉空间 · 活动风采。</p>
+        <p class="small">明线：北斗七星育人维度 ｜ 暗线：国家级非遗“七星舞狮”</p>
+      </div>
+      <div>
+        <h4>快速导航</h4>
+        <p><a href="growth.html">成长进步</a><br><a href="honor.html">荣誉空间</a><br>
+           <a href="activities.html">活动风采</a><br><a href="plan.html">建设方案</a></p>
+      </div>
+      <div>
+        <h4>班级名片</h4>
+        <p>23 机电一体化“七星班”<br>45 人 · 全男生 · 7 个星阵组</p>
+        <p class="small">踏位定桩 · 列阵同心 · 精技上桩</p>
+      </div>
+    </div>
+    <div class="legal">
+      <span>23 机电一体化“七星班” · 德育展示</span>
+      <span>列阵同心，谁也不是一个人在走</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/charts.js"></script>
+<script src="assets/js/ui.js"></script>
+<script>
+QXUI.onReady(function () {
+  var U = QXUI, D = U.data, esc = U.esc;
+
+  U.qs('#ruleText').textContent = D.meta.boardNote + ' 组榜只比较“参与与成长”，不比谁学得好。';
+
+  /* --- 榜位 --- */
+  var RANK_TIP = {
+    tq: '实训实践与职业规划落地扎实，跟岗任务完成度高。',
+    tj: '五项常规台账最完整，班级服务岗位认领率最高。',
+    ky: '家校沟通与非遗传帮带参与率高，校外宣讲贡献突出。',
+    yg: '非遗传承单项领先，醒狮训练出勤与展演参与最积极。',
+    tz: '思想政治与文明礼仪表现稳定，团课与思政班会出勤满勤。',
+    yh: '专业创新参与面广，技能竞赛梯队人数最多。',
+    tx: '体锻健康与情绪管理进步幅度最大，是后程发力型。'
+  };
+
+  U.qs('#rankList').innerHTML = D.board.map(function (b, i) {
+    var cls = i < 3 ? ' top' + (i + 1) : '';
+    return '<a class="rank-item' + cls + '" href="#grp-' + b.id + '">' +
+      '<div class="rank-badge num">' + (i + 1) + '</div>' +
+      '<div class="rank-main">' +
+        '<div class="name">' + esc(b.name) + U.chip(b.star, 'chip-gold') + U.chip(b.dim, 'chip') + '</div>' +
+        '<div class="meta">组长 ' + esc(b.leader) + ' · ' + b.size + ' 人 · ' + esc(RANK_TIP[b.id] || '') + '</div>' +
+      '</div>' +
+      '<div class="rank-total">' +
+        '<div class="v num">' + b.total + '</div>' +
+        '<div class="k">/ 600 ｜ <span class="rank-delta">十学期累计 ' + b.delta + '</span></div>' +
+      '</div></a>';
+  }).join('');
+
+  /* --- 六维对比 --- */
+  var bd = D.boardDims;
+  var PAL = ['#8E1610', '#C6281C', '#E0391F', '#E8721C', '#E0A020', '#F5C518'];
+  QXChart.groupedBars(U.qs('#groupBars'), {
+    categories: D.board.map(function (b) { return b.name; }),
+    max: 100,
+    series: bd.map(function (d, i) {
+      return {
+        name: d.name, color: PAL[i],
+        values: D.board.map(function (b) { return b.scores[d.key]; })
+      };
+    })
+  });
+  U.qs('#groupLegend').innerHTML = bd.map(function (d, i) {
+    return '<span><i style="background:' + PAL[i] + '"></i>' + esc(d.name) + '</span>';
+  }).join('');
+
+  /* --- 明细表 --- */
+  U.qs('#detailHead').innerHTML = '<tr><th class="c">名次</th><th>星阵组</th>' +
+    bd.map(function (d) { return '<th class="c">' + esc(d.name) + '</th>'; }).join('') +
+    '<th class="c">综合</th><th class="c">进步</th></tr>';
+  U.qs('#detailBody').innerHTML = D.board.map(function (b, i) {
+    return '<tr><td class="c num">' + (i + 1) + '</td>' +
+      '<td>' + esc(b.name) + ' <span class="muted small">' + esc(b.star) + ' · ' + b.size + ' 人</span></td>' +
+      bd.map(function (d) { return '<td class="c num">' + b.scores[d.key] + '</td>'; }).join('') +
+      '<td class="c num"><strong>' + b.total + '</strong></td>' +
+      '<td class="c num" style="color:#C6281C">+' + b.delta + '</td></tr>';
+  }).join('');
+
+  /* --- 组卡片 --- */
+  U.qs('#groupCards').innerHTML = D.groups.map(function (g) {
+    var b = U.boardOf(g.id) || { scores: {}, total: 0, delta: 0 };
+    var mem = U.studentsOf(g.id);
+    return '<article class="card card-flat" id="grp-' + g.id + '" style="scroll-margin-top:96px">' +
+      '<div class="chips mb0">' + U.chip(g.star, 'chip-gold') + U.chip(g.dim, 'chip') +
+        U.chip('组长 ' + g.leader, 'chip-info') + U.chip(mem.length + ' 人', 'chip') + '</div>' +
+      '<h3 class="mt16">' + esc(g.name) + '</h3>' +
+      bd.map(function (d) { return U.barRow(d.name, b.scores[d.key] || 0, 100); }).join('') +
+      '<div class="chips mt16">' +
+        mem.map(function (s) { return U.chip(s.name + (s.nameNote ? '（' + s.nameNote + '）' : ''), ''); }).join('') +
+      '</div>' +
+      '<p class="small muted mt8 mb0">组内综合积分 ' + b.total + ' / 600 ｜ 人均七维成长 +' + b.delta + '</p>' +
+      '</article>';
+  }).join('');
+});
+</script>
+</body>
+</html>

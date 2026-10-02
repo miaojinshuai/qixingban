@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>成长进步 · 23 机电一体化“七星班”</title>
+<meta name="description" content="个人成长进步：七维雷达、六学期成长曲线与成长档案。只呈现本人数据，不做全班学业成绩排名。">
+<link rel="icon" href="assets/img/badge.jpg">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要内容</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html">
+      <img src="assets/img/badge.jpg" alt="七星班班徽">
+      <span class="t"><b>23 机电一体化“七星班”</b><span>踏星笃行　智工守规</span></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="展开导航" aria-expanded="false"><span></span></button>
+    <nav class="nav" aria-label="站点导航">
+      <a href="index.html">首页</a>
+      <a href="plan.html">建设方案</a>
+      <a href="groups.html">七星组榜</a>
+      <a href="growth.html">成长进步</a>
+      <a href="honor.html">荣誉空间</a>
+      <a href="activities.html">活动风采</a>
+      <a href="teacher.html">教师管理</a>
+      <a href="student.html">学生自查</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-head" data-watermark="踏星笃行">
+  <div class="wrap">
+    <p class="crumb"><a href="index.html">首页</a> / 成长进步</p>
+    <h1>我的成长进步</h1>
+    <p class="desc">成长不是跟别人比，是跟半年前的自己比。这一页只呈现你本人的七维变化——入学初的样子、现在的样子，以及中间走过的那六步。</p>
+  </div>
+</section>
+
+<main id="main">
+
+  <section class="section section-tight">
+    <div class="wrap">
+      <div class="identity reveal">
+        <div class="who">
+          <div class="avatar" id="avatar">七</div>
+          <div>
+            <b id="whoName">——</b>
+            <span id="whoMeta">——</span>
+          </div>
+        </div>
+        <div style="margin-left:auto; display:flex; gap:10px; align-items:center; flex-wrap:wrap">
+          <label class="small muted" for="pickStudent">切换身份</label>
+          <select id="pickStudent" style="width:auto; min-width:180px"></select>
+        </div>
+      </div>
+      <div class="note mt16 reveal">
+        <span class="ic">i</span>
+        <p class="mb0">本站<strong>不对全班学业成绩排名</strong>，也不呈现同学之间的分数对照。此页数据仅作为个人成长档案，由本人与班主任查看。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tight">
+    <div class="wrap">
+      <div class="stats reveal" id="myStats"></div>
+    </div>
+  </section>
+
+  <section class="section section-tight">
+    <div class="wrap">
+      <div class="growth-panel">
+        <div class="chart-box reveal">
+          <h3>七维成长对比</h3>
+          <p class="hint">入学初基线　vs　当前（第三学年下）· 满分 100</p>
+          <div id="myRadar"></div>
+          <div class="chart-legend">
+            <span><i style="background:#E0A020"></i>入学初基线</span>
+            <span><i style="background:#C6281C"></i>当前水平</span>
+          </div>
+        </div>
+        <div class="chart-box reveal">
+          <h3>六学期成长曲线</h3>
+          <p class="hint">选择维度，看自己这三年在哪儿用力、在哪儿停住了</p>
+          <div class="seg" id="dimSeg" style="margin-bottom:12px"></div>
+          <div id="myLine"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tight">
+    <div class="wrap">
+      <div class="split reveal">
+        <div class="card card-flat">
+          <h3>三个进步亮点</h3>
+          <p class="muted small">按当前水平与三年增幅综合挑出，写进你的成长档案。</p>
+          <div id="myTop"></div>
+        </div>
+        <div class="card card-flat">
+          <h3>还差一口气的地方</h3>
+          <p class="muted small">不是批评，是下一阶段的一个具体抓手。</p>
+          <div id="myLow"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tight">
+    <div class="wrap">
+      <div class="card card-flat reveal">
+        <h3>七维当前水平</h3>
+        <p class="muted small">满分 100 · 由学生自评 30%、班级互评 30%、教师与企业师傅评价 40% 合成。</p>
+        <div id="myBars" class="mt16"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">成长明细</span>
+        <h2>六学期七维分数一览</h2>
+        <p class="sub">这张表只属于你。哪一步走得稳、哪一步落了空，一眼能看出来。</p>
+      </div>
+      <div class="table-wrap reveal">
+        <table class="tb">
+          <caption id="detailCaption">个人六学期成长明细</caption>
+          <thead><tr><th>学期</th><th class="c">七维均值</th><th>较上学期</th></tr></thead>
+          <tbody id="myTermTable"></tbody>
+        </table>
+      </div>
+      <div class="table-wrap mt24 reveal">
+        <table class="tb">
+          <caption>七维逐项明细（六学期）</caption>
+          <thead id="dimHead"></thead>
+          <tbody id="dimBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="motto">踏星笃行　智工守规</div>
+        <p>23 机电一体化“七星班”班级建设展示平台：育人图景 · 七星组榜 · 成长档案 · 荣誉空间 · 活动风采。</p>
+        <p class="small">明线：北斗七星育人维度 ｜ 暗线：国家级非遗“七星舞狮”</p>
+      </div>
+      <div>
+        <h4>快速导航</h4>
+        <p><a href="groups.html">七星组榜</a><br><a href="honor.html">荣誉空间</a><br>
+           <a href="student.html">学生自查</a><br><a href="plan.html">建设方案</a></p>
+      </div>
+      <div>
+        <h4>班级名片</h4>
+        <p>23 机电一体化“七星班”<br>45 人 · 全男生 · 7 个星阵组</p>
+        <p class="small">踏位定桩 · 列阵同心 · 精技上桩</p>
+      </div>
+    </div>
+    <div class="legal">
+      <span>23 机电一体化“七星班” · 德育展示</span>
+      <span>跟昨天的自己比</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/charts.js"></script>
+<script src="assets/js/ui.js"></script>
+<script>
+QXUI.onReady(function () {
+  var U = QXUI, D = U.data, esc = U.esc;
+  var dims = D.dims;
+  var curDim = 'avg';
+
+  /* --- 身份选择 --- */
+  var sel = U.qs('#pickStudent');
+  sel.innerHTML = D.groups.map(function (g) {
+    var mem = U.studentsOf(g.id);
+    return '<optgroup label="' + esc(g.name + '　' + g.star) + '">' +
+      mem.map(function (s) {
+        var nm = s.name + (s.nameNote ? '（' + s.nameNote + '）' : '');
+        return '<option value="' + s.id + '">' + esc(nm) + '　' + esc(s.post) + '</option>';
+      }).join('') + '</optgroup>';
+  }).join('');
+
+  var saved = U.store.get('studentId', D.students[0].id);
+  if (!U.student(saved)) saved = D.students[0].id;
+  sel.value = String(saved);
+
+  sel.addEventListener('change', function () {
+    U.store.set('studentId', Number(sel.value));
+    render();
+  });
+
+  /* --- 维度切换按钮 --- */
+  U.qs('#dimSeg').innerHTML =
+    '<button type="button" data-k="avg" aria-pressed="true">七维均值</button>' +
+    dims.map(function (d) {
+      return '<button type="button" data-k="' + d.key + '" aria-pressed="false">' + esc(d.name) + '</button>';
+    }).join('');
+  U.qsa('#dimSeg button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      curDim = b.getAttribute('data-k');
+      U.qsa('#dimSeg button').forEach(function (x) {
+        x.setAttribute('aria-pressed', x === b ? 'true' : 'false');
+      });
+      drawLine(U.student(sel.value));
+    });
+  });
+
+  function seriesOf(s, key) {
+    if (key === 'avg') return s.terms.map(function (_, t) { return U.termAvg(s, t); });
+    return U.dimSeries(s, key);
+  }
+
+  function drawLine(s) {
+    var name = curDim === 'avg' ? '七维均值'
+      : (dims.filter(function (d) { return d.key === curDim; })[0] || {}).name;
+    QXChart.line(U.qs('#myLine'), {
+      labels: D.meta.termShort,
+      min: 40, max: 100,
+      series: [{ name: name, color: '#C6281C', values: seriesOf(s, curDim) }]
+    });
+  }
+
+  /* --- 渲染 --- */
+  function render() {
+    var s = U.student(sel.value);
+    if (!s) return;
+    var g = U.groupOf(s.group);
+    var nmShow = s.name + (s.nameNote ? '（' + s.nameNote + '）' : '');
+
+    U.qs('#avatar').textContent = s.name.slice(0, 1);
+    U.qs('#whoName').textContent = nmShow;
+    U.qs('#whoMeta').textContent = '学（籍）号 ' + s.sid + ' · ' + g.name + '（' + g.star + '）· ' + s.post;
+
+    var first = s.terms[0], last = s.terms[s.terms.length - 1];
+    var firstAvg = U.termAvg(s, 0), lastAvg = U.termAvg(s, s.terms.length - 1);
+    var gains = dims.map(function (d) {
+      return { name: d.name, star: d.star, key: d.key, gain: (last[d.key] || 0) - (first[d.key] || 0), value: last[d.key] || 0 };
+    });
+    var maxGain = gains.slice().sort(function (a, b) { return b.gain - a.gain; })[0];
+    var maxVal = gains.slice().sort(function (a, b) { return b.value - a.value; })[0];
+
+    /* 概览卡 */
+    U.qs('#myStats').innerHTML = [
+      [lastAvg.toFixed(1), '分', '当前七维均值'],
+      ['+' + U.r1(lastAvg - firstAvg), '分', '三年成长幅度'],
+      [maxVal.value, '分', '最高维度 · ' + maxVal.name],
+      ['+' + maxGain.gain, '分', '增幅最大 · ' + maxGain.name]
+    ].map(function (x) {
+      return '<div class="stat"><div class="v num">' + x[0] + '<small>' + x[1] + '</small></div>' +
+        '<div class="k">' + esc(x[2]) + '</div></div>';
+    }).join('');
+
+    /* 雷达 */
+    QXChart.radar(U.qs('#myRadar'), {
+      axes: dims.map(function (d) { return { key: d.key, label: d.name }; }),
+      max: 100,
+      series: [
+        { name: '入学初基线', color: '#E0A020', values: dims.map(function (d) { return first[d.key]; }) },
+        { name: '当前水平', color: '#C6281C', values: dims.map(function (d) { return last[d.key]; }) }
+      ]
+    });
+
+    drawLine(s);
+
+    /* 亮点 / 待加强 */
+    var st = U.strengths(s, 3);
+    U.qs('#myTop').innerHTML = st.top.map(function (d, i) {
+      return '<div class="hl-item"><span class="k">' + esc(d.star) + '</span>' +
+        '<span class="v"><strong>' + esc(d.name) + '</strong>　当前 ' + d.value + ' 分，三年提升 '
+        + (d.gain >= 0 ? '+' : '') + d.gain + ' 分' +
+        (i === 0 ? '　—— 这是你最稳的一根桩。' : '') + '</span></div>';
+    }).join('');
+    U.qs('#myLow').innerHTML = st.low.map(function (d) {
+      return '<div class="hl-item"><span class="k">' + esc(d.star) + '</span>' +
+        '<span class="v"><strong>' + esc(d.name) + '</strong>　当前 ' + d.value + ' 分。' +
+        '建议下一阶段给它留一个具体动作，比如' +
+        (d.name === '健康身心' ? '固定每天的运动时段，并把作息稳定下来。'
+          : d.name === '非遗传承' ? '跟着社团补两次训练，试着独立讲一段非遗故事。'
+          : d.name === '职业规划' ? '把生涯规划书里的这一步拆成三个可完成的小任务。'
+          : d.name === '专业创新' ? '报一次实训技能小测，先把工件合格率稳住。'
+          : d.name === '协同育人' ? '主动参与一次家校或企业活动，并把感受写下来。'
+          : d.name === '集体建设' ? '主动认领一次班级事务，把过程记录补全。'
+          : '在班会与团课里主动发言一次，把参与记录留下来。') +
+        '</span></div>';
+    }).join('');
+
+    /* 当前水平条 */
+    U.qs('#myBars').innerHTML = dims.map(function (d) {
+      return U.barRow(d.name, last[d.key] || 0, 100);
+    }).join('');
+
+    /* 逐学期明细 */
+    U.qs('#detailCaption').textContent = nmShow + ' · 六学期成长明细';
+    U.qs('#myTermTable').innerHTML = s.terms.map(function (row, t) {
+      var v = U.termAvg(s, t);
+      var d = t === 0 ? null : U.r1(v - U.termAvg(s, t - 1));
+      var badge = d == null ? '<span class="muted">入学基线</span>'
+        : '<span style="color:' + (d >= 0 ? '#C6281C' : '#C6281C') + '">' + (d >= 0 ? '+' : '') + d + ' 分</span>';
+      return '<tr><td>' + esc(D.meta.terms[t]) + '</td><td class="c num"><strong>' + v.toFixed(1) + '</strong></td><td>' + badge + '</td></tr>';
+    }).join('');
+
+    /* 七维逐项 */
+    U.qs('#dimHead').innerHTML = '<tr><th>维度</th><th>星位</th>' +
+      D.meta.termShort.map(function (t) { return '<th class="c">' + esc(t) + '</th>'; }).join('') +
+      '<th class="c">三年增幅</th></tr>';
+    U.qs('#dimBody').innerHTML = dims.map(function (d) {
+      var vals = U.dimSeries(s, d.key);
+      var gain = vals[vals.length - 1] - vals[0];
+      return '<tr><td>' + esc(d.name) + '</td><td class="muted small">' + esc(d.star) + '</td>' +
+        vals.map(function (v) { return '<td class="c num">' + v + '</td>'; }).join('') +
+        '<td class="c num" style="color:' + (gain >= 0 ? '#C6281C' : '#C6281C') + '"><strong>' +
+        (gain >= 0 ? '+' : '') + gain + '</strong></td></tr>';
+    }).join('');
+  }
+
+  render();
+});
+</script>
+</body>
+</html>

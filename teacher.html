@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>教师管理 · 23 机电一体化“七星班”</title>
+<meta name="description" content="七星班教师管理界面：班级看板、学生名册、积分录入、活动发布与荣誉登记。看板、名册、积分、活动与荣誉记录。">
+<link rel="icon" href="assets/img/badge.jpg">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要内容</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html">
+      <img src="assets/img/badge.jpg" alt="七星班班徽">
+      <span class="t"><b>23 机电一体化“七星班”</b><span>踏星笃行　智工守规</span></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="展开导航" aria-expanded="false"><span></span></button>
+    <nav class="nav" aria-label="站点导航">
+      <a href="index.html">首页</a>
+      <a href="plan.html">建设方案</a>
+      <a href="groups.html">七星组榜</a>
+      <a href="growth.html">成长进步</a>
+      <a href="honor.html">荣誉空间</a>
+      <a href="activities.html">活动风采</a>
+      <a href="teacher.html">教师管理</a>
+      <a href="student.html">学生自查</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-head" data-watermark="管理者">
+  <div class="wrap">
+    <p class="crumb"><a href="index.html">首页</a> / 教师管理</p>
+    <h1>教师管理界面</h1>
+    <p class="desc">班级看板、学生名册、积分录入、活动发布与荣誉登记。班主任在这里掌握班情、留下记录，把管理动作变成可查的数据。</p>
+  </div>
+</section>
+
+<main id="main">
+
+  <section class="section section-tight">
+    <div class="wrap">
+      <div class="note reveal">
+        <span class="ic">i</span>
+        <p class="mb0">按“技能 40% / 德育 35% / 班级服务 25%”记录过程性表现，学业考试成绩单独走教学口径，不在此录入。所有记录进入班级台账，学期末统一复盘。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tight">
+    <div class="wrap">
+      <div class="admin-tabs" role="tablist" id="tabs">
+        <button type="button" role="tab" data-p="board" aria-selected="true">班级看板</button>
+        <button type="button" role="tab" data-p="roster" aria-selected="false">学生名册</button>
+        <button type="button" role="tab" data-p="points" aria-selected="false">积分录入</button>
+        <button type="button" role="tab" data-p="publish" aria-selected="false">活动发布</button>
+        <button type="button" role="tab" data-p="honor" aria-selected="false">荣誉登记</button>
+        <button type="button" role="tab" data-p="log" aria-selected="false">操作记录</button>
+      </div>
+
+      <!-- 看板 -->
+      <div id="p-board">
+        <div class="stats" id="dbStats"></div>
+        <div class="split mt24">
+          <div class="chart-box">
+            <h3>七星组积分对比</h3>
+            <p class="hint">六维过程性积分之和（满分 600）· 学业考试成绩不计入</p>
+            <div id="dbBoard"></div>
+          </div>
+          <div class="chart-box">
+            <h3>全班七维成长走势</h3>
+            <p class="hint">入学初 → 第三学年末 · 六学期均值</p>
+            <div id="dbTrend"></div>
+          </div>
+        </div>
+        <div class="grid g2 mt24">
+          <div class="chart-box">
+            <h3>全班七维当前水平</h3>
+            <p class="hint">按第三方合成口径（自评 30% / 互评 30% / 师评 40%）</p>
+            <div id="dbDims"></div>
+          </div>
+          <div class="chart-box">
+            <h3>需要盯一下的名单</h3>
+            <p class="hint">按“成长幅度靠后”提示关注，用于安排谈心与帮扶，<strong>不作任何成绩排名</strong></p>
+            <div id="dbAttention"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 名册 -->
+      <div id="p-roster" class="hide">
+        <div class="card card-flat">
+          <div class="form-row">
+            <div class="field mb0">
+              <label for="rSearch">搜索姓名 / 学籍号</label>
+              <input type="search" id="rSearch" placeholder="输入姓名或学籍号后四位">
+            </div>
+            <div class="field mb0">
+              <label for="rGroup">按星阵组筛选</label>
+              <select id="rGroup"></select>
+            </div>
+          </div>
+        </div>
+        <p class="muted small mt16" id="rosterTip"></p>
+        <div class="roster-grid mt8" id="rosterGrid"></div>
+        <div id="rosterDetail" class="mt24"></div>
+      </div>
+
+      <!-- 积分录入 -->
+      <div id="p-points" class="hide">
+        <div class="split">
+          <div class="card card-flat">
+            <h3>录入一条过程性积分</h3>
+            <p class="muted small">积分按“技能 40% / 德育 35% / 班级服务 25%”权重折算进七星积分，学业考试成绩单独走教学口径，不在此录入。</p>
+            <form id="ptForm">
+              <div class="field">
+                <label for="ptStudent">学生</label>
+                <select id="ptStudent" required></select>
+              </div>
+              <div class="form-row">
+                <div class="field">
+                  <label for="ptDim">维度</label>
+                  <select id="ptDim" required></select>
+                </div>
+                <div class="field">
+                  <label for="ptVal">分值（1—10）</label>
+                  <input type="number" id="ptVal" min="1" max="10" value="2" required>
+                </div>
+              </div>
+              <div class="field">
+                <label for="ptWhy">事由</label>
+                <input type="text" id="ptWhy" placeholder="例：主动承担实训工位整理，收尾完整" required>
+              </div>
+              <button class="btn btn-primary" type="submit">提交录入</button>
+              <span class="small muted" id="ptMsg" style="margin-left:12px"></span>
+            </form>
+          </div>
+          <div class="card card-flat">
+            <h3>本次录入累计</h3>
+            <p class="muted small">按下表核对，避免重复计分。</p>
+            <div class="table-wrap">
+              <table class="tb" style="min-width:0">
+                <thead><tr><th>学生</th><th class="c">维度</th><th class="c">累计分</th></tr></thead>
+                <tbody id="ptSum"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 活动发布 -->
+      <div id="p-publish" class="hide">
+        <div class="split">
+          <div class="card card-flat">
+            <h3>发布一次班级活动</h3>
+            <form id="pbForm">
+              <div class="form-row">
+                <div class="field">
+                  <label for="pbKind">活动类型</label>
+                  <select id="pbKind">
+                    <option value="主题班会">主题班会</option>
+                    <option value="特色活动">特色活动</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="pbSeries">所属系列</label>
+                  <select id="pbSeries">
+                    <option value="—">（主题班会可不选）</option>
+                    <option value="启星向新">启星向新</option>
+                    <option value="承星传韵">承星传韵</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="pbTerm">学期</label>
+                  <select id="pbTerm"></select>
+                </div>
+              </div>
+              <div class="field">
+                <label for="pbTitle">活动名称</label>
+                <input type="text" id="pbTitle" placeholder="例：AI 质检员——机器视觉下的“零缺陷”" required>
+              </div>
+              <div class="field">
+                <label for="pbAim">活动目的 / 落点</label>
+                <input type="text" id="pbAim" placeholder="例：树立零缺陷、用数据说话" required>
+              </div>
+              <button class="btn btn-primary" type="submit">发布活动</button>
+              <span class="small muted" id="pbMsg" style="margin-left:12px"></span>
+            </form>
+          </div>
+          <div class="card card-flat">
+            <h3>已发布</h3>
+            <p class="muted small">共 <span id="pbCount">0</span> 条，最新在前。</p>
+            <div id="pbList"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 荣誉登记 -->
+      <div id="p-honor" class="hide">
+        <div class="split">
+          <div class="card card-flat">
+            <h3>登记一项荣誉</h3>
+            <form id="hnForm">
+              <div class="form-row">
+                <div class="field">
+                  <label for="hnType">类型</label>
+                  <select id="hnType">
+                    <option value="个人">个人荣誉</option>
+                    <option value="集体">集体荣誉</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="hnLevel">级别</label>
+                  <select id="hnLevel">
+                    <option value="校级">校级</option>
+                    <option value="市级">市级</option>
+                    <option value="省级">省级</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="hnDate">时间</label>
+                  <input type="text" id="hnDate" placeholder="2026 年 6 月">
+                </div>
+              </div>
+              <div class="field">
+                <label for="hnName">姓名（集体荣誉填“集体”）</label>
+                <input type="text" id="hnName" placeholder="例：黄炜城" required>
+              </div>
+              <div class="field">
+                <label for="hnTitle">荣誉名称</label>
+                <input type="text" id="hnTitle" placeholder="例：校级技能竞赛 一等奖" required>
+              </div>
+              <button class="btn btn-primary" type="submit">登记</button>
+              <span class="small muted" id="hnMsg" style="margin-left:12px"></span>
+            </form>
+          </div>
+          <div class="card card-flat">
+            <h3>已登记</h3>
+            <p class="muted small">共 <span id="hnCount">0</span> 条。荣誉只登记正向成绩，不登记扣分与负面名单。</p>
+            <div id="hnList"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 记录 -->
+      <div id="p-log" class="hide">
+        <div class="card card-flat">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap">
+            <div>
+              <h3 class="mb0">操作记录</h3>
+              <p class="muted small mb0">留存的管理动作，用于学期末复盘。</p>
+            </div>
+            <button class="btn btn-ghost btn-sm" type="button" id="logClear">清空记录</button>
+          </div>
+          <ul class="log-list mt16" id="logList" style="list-style:none; padding:0"></ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="motto">踏星笃行　智工守规</div>
+        <p>23 机电一体化“七星班”班级建设展示平台：育人图景 · 七星组榜 · 成长档案 · 荣誉空间 · 活动风采。</p>
+        <p class="small">明线：北斗七星育人维度 ｜ 暗线：国家级非遗“七星舞狮”</p>
+      </div>
+      <div>
+        <h4>快速导航</h4>
+        <p><a href="groups.html">七星组榜</a><br><a href="growth.html">成长进步</a><br>
+           <a href="student.html">学生自查</a><br><a href="plan.html">建设方案</a></p>
+      </div>
+      <div>
+        <h4>班级名片</h4>
+        <p>23 机电一体化“七星班”<br>45 人 · 全男生 · 7 个星阵组</p>
+        <p class="small">踏位定桩 · 列阵同心 · 精技上桩</p>
+      </div>
+    </div>
+    <div class="legal">
+      <span>23 机电一体化“七星班” · 德育展示</span>
+      <span>管理动作要留下痕迹</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/charts.js"></script>
+<script src="assets/js/ui.js"></script>
+<script>
+QXUI.onReady(function () {
+  var U = QXUI, D = U.data, esc = U.esc;
+  var dims = D.dims;
+
+  /* ---------- localStorage 分片 ---------- */
+  var K_LOG = 'teacherLog', K_PT = 'teacherPoints', K_PB = 'teacherActs', K_HN = 'teacherHonors', K_CLR = 'teacherLogCleared';
+  /* 预置操作记录（第三学年下 · 2026 年 3—6 月），清空后不再显示 */
+  var SEED_LOG = D.teacherLog || [];
+  function get(k, d) { return U.store.get(k, d || []); }
+  function set(k, v) { U.store.set(k, v); }
+  function stamp() {
+    var d = new Date(), p = function (n) { return String(n).padStart(2, '0'); };
+    return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) + ' ' + p(d.getHours()) + ':' + p(d.getMinutes());
+  }
+  function pushLog(text) {
+    var l = get(K_LOG); l.unshift({ t: stamp(), text: text }); set(K_LOG, l.slice(0, 60));
+    set(K_CLR, false); renderLog();
+  }
+
+  /* ---------- Tab 切换 ---------- */
+  U.qsa('#tabs button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var p = b.getAttribute('data-p');
+      U.qsa('#tabs button').forEach(function (x) { x.setAttribute('aria-selected', x === b ? 'true' : 'false'); });
+      ['board', 'roster', 'points', 'publish', 'honor', 'log'].forEach(function (k) {
+        var el = U.qs('#p-' + k);
+        if (el) el.classList.toggle('hide', k !== p);
+      });
+      location.hash = p;
+    });
+  });
+  var start = (location.hash || '').replace('#', '');
+  if (start) {
+    var btn = U.qs('#tabs button[data-p="' + start + '"]');
+    if (btn) btn.click();
+  }
+
+  /* ---------- 看板 ---------- */
+  U.qs('#dbStats').innerHTML = [
+    [D.meta.size, '人', '全班人数'],
+    [D.groups.length, '个', '星阵组'],
+    [D.board[0].name, '', '当前组榜首位'],
+    [D.activities.length, '场', '已排活动'],
+    [D.honorsPerson.length + D.honorsGroup.length, '项', '荣誉登记'],
+    [12, '类', '重点关注维度']
+  ].map(function (x) {
+    return '<div class="stat"><div class="v num">' + esc(String(x[0])) + '<small>' + esc(x[1]) + '</small></div>' +
+      '<div class="k">' + esc(x[2]) + '</div></div>';
+  }).join('');
+
+  QXChart.groupedBars(U.qs('#dbBoard'), {
+    categories: D.board.map(function (b) { return b.name; }),
+    max: 600,
+    series: [{ name: '综合积分', color: '#C6281C', values: D.board.map(function (b) { return b.total; }) }]
+  });
+
+  QXChart.line(U.qs('#dbTrend'), {
+    labels: D.meta.termShort, min: 40, max: 100,
+    series: [{
+      name: '全班七维均值', color: '#E8721C',
+      values: D.meta.termShort.map(function (_, t) {
+        return U.r1(U.avg(D.students.map(function (s) { return U.termAvg(s, t); })));
+      })
+    }]
+  });
+
+  var now = dims.map(function (d) {
+    return U.r1(U.avg(D.students.map(function (s) { return s.terms[5][d.key]; })));
+  });
+  U.qs('#dbDims').innerHTML = dims.map(function (d, i) {
+    return U.barRow(d.name, Math.round(now[i]), 100);
+  }).join('');
+
+  /* 成长幅度靠后的名单（只提示关注，不排名） */
+  var byGain = D.students.map(function (s) {
+    return { s: s, gain: U.r3 ? U.r3(U.termAvg(s, 5) - U.termAvg(s, 0)) : (U.termAvg(s, 5) - U.termAvg(s, 0)) };
+  }).sort(function (a, b) { return a.gain - b.gain; }).slice(0, 6);
+  U.qs('#dbAttention').innerHTML = byGain.map(function (x) {
+    return '<div class="hl-item"><span class="k">' + esc(x.s.groupName) + '</span>' +
+      '<span class="v"><strong>' + esc(x.s.name) + '</strong>　三年成长 +' + U.r1(x.gain) +
+      ' 分　<span class="muted">建议安排一次个别谈话，看看卡在哪一步</span></span></div>';
+  }).join('') + '<p class="small muted mt16 mb0">此清单用于安排帮扶与谈心，<strong>不作为任何评比依据</strong>，也不在班级公开。</p>';
+
+  /* ---------- 名册 ---------- */
+  U.qs('#rGroup').innerHTML = '<option value="全部">全部星阵组</option>' +
+    D.groups.map(function (g) { return '<option value="' + g.id + '">' + esc(g.name + '（' + g.star + '）') + '</option>'; }).join('');
+
+  var picked = null;
+  function renderRoster() {
+    var kw = (U.qs('#rSearch').value || '').trim();
+    var gid = U.qs('#rGroup').value;
+    var list = D.students.filter(function (s) {
+      if (gid !== '全部' && s.group !== gid) return false;
+      if (!kw) return true;
+      return s.name.indexOf(kw) >= 0 || s.sid.indexOf(kw) >= 0;
+    });
+    U.qs('#rosterTip').textContent = '共 ' + list.length + ' 人' + (kw ? '（关键词“' + kw + '”）' : '');
+    U.qs('#rosterGrid').innerHTML = list.length ? list.map(function (s) {
+      return '<button class="roster-card' + (picked === s.id ? ' active' : '') + '" type="button" data-id="' + s.id + '">' +
+        '<div class="nm"><span class="avatar" style="width:26px;height:26px;border-radius:8px;font-size:12px">' +
+        esc(s.name.slice(0, 1)) + '</span>' + esc(s.name) +
+        (s.nameNote ? '<span class="muted small">（' + esc(s.nameNote) + '）</span>' : '') + '</div>' +
+        '<div class="mt">' + esc(s.groupName) + ' · ' + esc(s.post) + '</div>' +
+        '<div class="mt num">' + esc(s.sid) + '</div></button>';
+    }).join('') : U.empty('没有匹配的学生，换个关键词试试。');
+
+    U.qsa('#rosterGrid .roster-card').forEach(function (c) {
+      c.addEventListener('click', function () {
+        picked = Number(c.getAttribute('data-id'));
+        renderRoster();
+        renderDetail();
+      });
+    });
+  }
+
+  function renderDetail() {
+    var box = U.qs('#rosterDetail');
+    if (!picked) { box.innerHTML = ''; return; }
+    var s = U.student(picked);
+    var g = U.groupOf(s.group);
+    var first = s.terms[0], last = s.terms[5];
+    var pts = get(K_PT, []).filter(function (p) { return p.sid === s.sid; });
+    var sumPt = pts.reduce(function (a, b) { return a + b.val; }, 0);
+    box.innerHTML = '<div class="card card-flat">' +
+      '<div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap">' +
+      '<div class="avatar">' + esc(s.name.slice(0, 1)) + '</div>' +
+      '<div><b style="font-size:17px">' + esc(s.name) + (s.nameNote ? '（' + esc(s.nameNote) + '）' : '') + '</b>' +
+      '<div class="small muted">' + esc(s.sid) + ' · ' + esc(g.name + '（' + g.star + '）') + ' · ' + esc(s.post) + '</div></div>' +
+      '<div style="margin-left:auto" class="chips">' + U.chip('当前七维均值 ' + U.termAvg(s, 5).toFixed(1), 'chip-red') +
+      U.chip('三年成长 +' + U.r1(U.termAvg(s, 5) - U.termAvg(s, 0)), 'chip-ok') +
+      U.chip('录入积分 ' + sumPt, 'chip-gold') + '</div></div>' +
+      '<div class="split mt24"><div>' + dims.map(function (d) {
+        return U.barRow(d.name, last[d.key], 100);
+      }).join('') + '</div>' +
+      '<div><h3 style="font-size:15px">七维逐学期（简）</h3>' + dims.map(function (d) {
+        return '<div class="hl-item"><span class="k">' + esc(d.name) + '</span><span class="v num">' +
+          first[d.key] + ' → ' + last[d.key] + '　<span class="muted">（' +
+          (last[d.key] - first[d.key] >= 0 ? '+' : '') + (last[d.key] - first[d.key]) + '）</span></span></div>';
+      }).join('') + '</div></div>' +
+      '<p class="small muted mt16 mb0">提示：本站不展示学生个人学业成绩排名；如需查看成绩明细，请到“教学成绩”模块（不在本站范围）。</p>' +
+      '</div>';
+  }
+  U.qs('#rSearch').addEventListener('input', renderRoster);
+  U.qs('#rGroup').addEventListener('change', renderRoster);
+  renderRoster();
+
+  /* ---------- 积分录入 ---------- */
+  var opt = D.students.map(function (s) {
+    return '<option value="' + s.id + '" data-sid="' + s.sid + '">' +
+      esc(s.name + (s.nameNote ? '（' + s.nameNote + '）' : '') + '　' + s.groupName) + '</option>';
+  }).join('');
+  U.qs('#ptStudent').innerHTML = opt;
+  U.qs('#ptDim').innerHTML = dims.map(function (d) {
+    return '<option value="' + d.key + '">' + esc(d.name + '（' + d.star + '）') + '</option>';
+  }).join('');
+  U.qs('#pbTerm').innerHTML = D.meta.terms.map(function (t, i) {
+    return '<option value="' + i + '">' + esc(t) + '</option>';
+  }).join('');
+
+  function renderPtSum() {
+    var list = get(K_PT, []);
+    if (!list.length) { U.qs('#ptSum').innerHTML = '<tr><td colspan="3">' + U.empty('还没有录入记录') + '</td></tr>'; return; }
+    var map = {}, order = [];
+    list.forEach(function (p) {
+      var k = p.name + '|' + p.dim + '|' + p.sid;
+      if (!map[k]) { map[k] = { name: p.name, sid: p.sid, dim: p.dim, sum: 0 }; order.push(k); }
+      map[k].sum += p.val;
+    });
+    U.qs('#ptSum').innerHTML = order.map(function (k) {
+      var r = map[k];
+      return '<tr><td>' + esc(r.name) + ' <span class="muted small">' + esc(r.sid.slice(-4)) + '</span></td>' +
+        '<td class="c">' + esc(r.dim) + '</td><td class="c num"><strong>' + r.sum + '</strong></td></tr>';
+    }).join('');
+  }
+
+  U.qs('#ptForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var sel = U.qs('#ptStudent');
+    var s = U.student(Number(sel.value));
+    var dimName = U.qs('#ptDim').selectedOptions[0].textContent.split('（')[0];
+    var val = Number(U.qs('#ptVal').value);
+    var why = U.qs('#ptWhy').value.trim();
+    var list = get(K_PT, []);
+    list.unshift({ ts: stamp(), name: s.name, sid: s.sid, group: s.groupName, dim: dimName, val: val, why: why });
+    set(K_PT, list.slice(0, 400));
+    pushLog('积分录入：' + s.name + '　' + dimName + ' +' + val + '　（' + why + '）');
+    U.qs('#ptMsg').textContent = '已录入：' + s.name + ' · ' + dimName + ' +' + val;
+    U.qs('#ptWhy').value = '';
+    renderPtSum();
+  });
+  renderPtSum();
+
+  /* ---------- 活动发布 ---------- */
+  function renderPb() {
+    var list = get(K_PB, []);
+    U.qs('#pbCount').textContent = list.length;
+    U.qs('#pbList').innerHTML = list.length ? list.map(function (a) {
+      return '<div class="hl-item"><span class="k">' + esc(a.termName || a.termShort || '') + '</span>' +
+        '<span class="v"><strong>' + esc(a.title) + '</strong>　' +
+        U.chip(a.series && a.series !== '—' ? a.series : a.kind, a.series === '启星向新' ? 'chip-info' : 'chip-gold') +
+        '<br><span class="muted small">' + esc(a.aim) + '　·　' + esc(a.ts) + '</span></span></div>';
+    }).join('') : U.empty('还没有发布记录');
+  }
+  U.qs('#pbForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var ti = Number(U.qs('#pbTerm').value);
+    var item = {
+      ts: stamp(),
+      kind: U.qs('#pbKind').value,
+      series: U.qs('#pbSeries').value,
+      termName: D.meta.terms[ti],
+      termShort: D.meta.termShort[ti],
+      title: U.qs('#pbTitle').value.trim(),
+      aim: U.qs('#pbAim').value.trim()
+    };
+    var list = get(K_PB, []);
+    list.unshift(item);
+    set(K_PB, list.slice(0, 100));
+    pushLog('活动发布：' + item.termName + '　' + item.title);
+    U.qs('#pbTitle').value = ''; U.qs('#pbAim').value = '';
+    U.qs('#pbMsg').textContent = '已发布：' + item.title;
+    renderPb();
+  });
+  renderPb();
+
+  /* ---------- 荣誉登记 ---------- */
+  function renderHn() {
+    var list = get(K_HN, []);
+    U.qs('#hnCount').textContent = list.length;
+    U.qs('#hnList').innerHTML = list.length ? list.map(function (h) {
+      return '<div class="hl-item"><span class="k">' + esc(h.date || '') + '</span>' +
+        '<span class="v"><strong>' + esc(h.name) + '</strong>　' + esc(h.title) + '　' +
+        '<span class="chip ' + U.levelChip(h.level) + '">' + esc(h.level) + '</span>' +
+        '<br><span class="muted small">' + esc(h.type) + '　·　登记于 ' + esc(h.ts) + '</span></span></div>';
+    }).join('') : U.empty('还没有荣誉登记');
+  }
+  U.qs('#hnForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var item = {
+      ts: stamp(),
+      type: U.qs('#hnType').value,
+      level: U.qs('#hnLevel').value,
+      date: U.qs('#hnDate').value.trim() || stamp().slice(0, 7),
+      name: U.qs('#hnName').value.trim(),
+      title: U.qs('#hnTitle').value.trim()
+    };
+    var list = get(K_HN, []);
+    list.unshift(item);
+    set(K_HN, list.slice(0, 200));
+    pushLog('荣誉登记：' + item.name + '　' + item.title + '（' + item.level + '）');
+    U.qs('#hnTitle').value = '';
+    U.qs('#hnMsg').textContent = '已登记：' + item.title;
+    renderHn();
+  });
+  renderHn();
+
+  /* ---------- 操作记录 ---------- */
+  function renderLog() {
+    var local = get(K_LOG);
+    var list = U.store.get(K_CLR, false) ? local : local.concat(SEED_LOG);
+    U.qs('#logList').innerHTML = list.length ? list.map(function (l) {
+      return '<li><span class="t">' + esc(l.t) + '</span>' + esc(l.text) + '</li>';
+    }).join('') : '<li class="muted">还没有操作记录。去“积分录入 / 活动发布 / 荣誉登记”试着记一条。</li>';
+  }
+  U.qs('#logClear').addEventListener('click', function () {
+    set(K_LOG, []); set(K_PT, []); set(K_PB, []); set(K_HN, []); set(K_CLR, true);
+    renderLog(); renderPtSum(); renderPb(); renderHn();
+    U.qs('#ptMsg').textContent = ''; U.qs('#pbMsg').textContent = ''; U.qs('#hnMsg').textContent = '';
+  });
+  renderLog();
+});
+</script>
+</body>
+</html>

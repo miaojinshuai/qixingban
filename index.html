@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>首页 · 23 机电一体化“七星班”</title>
+<meta name="description" content="23 机电一体化“七星班”班级建设展示平台：踏七星育人图景、舞动建设模型、七星组榜、成长进步与荣誉空间。">
+<link rel="icon" href="assets/img/badge.jpg">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要内容</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html">
+      <img src="assets/img/badge.jpg" alt="七星班班徽：北斗七星、齿轮与醒狮头纹样">
+      <span class="t"><b>23 机电一体化“七星班”</b><span>踏星笃行　智工守规</span></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="展开导航" aria-expanded="false"><span></span></button>
+    <nav class="nav" aria-label="站点导航">
+      <a href="index.html">首页</a>
+      <a href="plan.html">建设方案</a>
+      <a href="groups.html">七星组榜</a>
+      <a href="growth.html">成长进步</a>
+      <a href="honor.html">荣誉空间</a>
+      <a href="activities.html">活动风采</a>
+      <a href="teacher.html">教师管理</a>
+      <a href="student.html">学生自查</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ Hero ============ -->
+  <section class="hero">
+    <img class="lion-watermark" src="assets/img/lion-crest.svg" alt="" aria-hidden="true" width="420" height="420">
+    <div class="wrap hero-side">
+      <div>
+        <span class="tagline">国家级非遗“七星舞狮” · 活态传承</span>
+        <h1>“七星”为工<br><em>舞动时代</em></h1>
+        <p class="lead">
+          机电装配讲究点位精准，醒狮踏七星讲究毫厘不错——两件事用的是同一套功夫。
+          我们把北斗七星的七个星位，对应成学生成长的七个维度；把非遗的步法，变成实训场上的标准。
+        </p>
+        <div class="cta">
+          <a class="btn btn-primary" href="plan.html">查看班级建设方案</a>
+          <a class="btn btn-ghost" href="groups.html">看七星组榜</a>
+        </div>
+      </div>
+      <aside class="hero-card">
+        <div class="badge-wrap">
+          <img src="assets/img/badge.jpg" alt="七星班班徽">
+          <div>
+            <div class="motto">踏星笃行　智工守规</div>
+            <div class="sub">23 机电一体化“七星班” · 三年建设周期</div>
+          </div>
+        </div>
+        <dl>
+          <dt>班级人数</dt><dd>45 人（男生 45 人）</dd>
+          <dt>育人维度</dt><dd>7 个星位维度</dd>
+          <dt>建设措施</dt><dd>7 项“舞动”措施</dd>
+          <dt>活动安排</dt><dd>24 节班会 + 12 次特色活动</dd>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ 数字概览 ============ -->
+  <section class="section section-tight">
+    <div class="wrap">
+      <div class="stats reveal" id="statRow"></div>
+    </div>
+  </section>
+
+  <!-- 醒狮纹样分隔 -->
+  <div class="wrap">
+    <div class="orn-row reveal">
+      <img class="lion-orn" src="assets/img/lion-crest.svg" alt="" aria-hidden="true" width="54" height="54">
+    </div>
+  </div>
+
+  <!-- ============ 踏七星育人图景 ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">育人图景</span>
+        <h2>北斗七星星位，对应成长的七个维度</h2>
+        <p class="sub">斗柄三颗指向“技艺与实践”，斗魁四颗指向“规矩与根基”。七个维度一个不落，一步一步走，不跳桩、不抄近路。</p>
+      </div>
+      <div class="step-track reveal" id="stepTrack"></div>
+      <div class="grid g-auto mt24 reveal" id="dimGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============ 舞动建设模型 ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">建设模型</span>
+        <h2>“舞动”建设模型：七项措施，各自对应一个维度</h2>
+        <p class="sub">一把狮舞要舞起来，靠的不是单个动作漂亮，而是旗、鼓、狮、桩配合成一整套。班级建设同理——七项措施彼此借力，共同发力。</p>
+      </div>
+      <div class="grid g-auto reveal" id="measureGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============ 三阶递进 ============ -->
+  <section class="section">
+    <div class="wrap split split-wide">
+      <div class="reveal">
+        <div class="section-head">
+          <span class="eyebrow">目标分解</span>
+          <h2>三年三阶，一阶一变</h2>
+          <p class="sub">三阶之间不跳跃：上一阶的“规矩”变成下一阶的“底气”，上一阶的“协作”变成下一阶的“攻坚”。</p>
+        </div>
+        <div class="timeline" id="stageList"></div>
+      </div>
+      <div class="reveal">
+        <div class="chart-box">
+          <h3>全班七维成长总览</h3>
+          <p class="hint">全班七维均值 · 六学期走势（不含学业考试成绩）</p>
+          <div id="classTrend"></div>
+          <div class="chart-legend">
+            <span><i style="background:#C6281C"></i>全班七维均值</span>
+          </div>
+        </div>
+        <div class="note note-gold mt16">
+          <span class="ic">!</span>
+          <p class="mb0">本站所有成绩类数据只呈现“本人 vs 本人历史”与“成长幅度”，<strong>不对全班学业成绩排名</strong>；七星组榜按过程性参与表现计分，学业考试成绩不计入。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 特色活动两条线 ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">活动安排</span>
+        <h2>特色活动：两条线，一头向新，一头传韵</h2>
+        <p class="sub">每学期 2 次、三年 12 次。“启星向新”看前沿、拓视野；“承星传韵”扎文化、明定位。</p>
+      </div>
+      <div class="grid g2 reveal">
+        <div class="card card-flat">
+          <span class="kicker">系列一</span>
+          <h3>启星向新</h3>
+          <p class="muted">聚焦智能制造、AI 技术、数字孪生等前沿方向，拓宽学生专业视野。</p>
+          <div id="qxList"></div>
+        </div>
+        <div class="card card-flat">
+          <span class="kicker">系列二</span>
+          <h3>承星传韵</h3>
+          <p class="muted">立足七星舞狮非遗资源，厚植学生文化根基，引导学生认清自身定位与发展方向。</p>
+          <div id="cyList"></div>
+        </div>
+      </div>
+      <p class="center mt24 reveal"><a class="btn btn-ghost" href="activities.html">查看全部 24 节班会与 12 次特色活动 →</a></p>
+    </div>
+  </section>
+
+  <!-- ============ 风采 + 组榜速览 ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">班级风采</span>
+        <h2>醒狮社里的七星班</h2>
+        <p class="sub">全班 11 名学生是校级醒狮社骨干，把“列阵同心”练成了身体记忆。</p>
+      </div>
+      <div class="gallery reveal" id="gallery"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">组榜速览</span>
+        <h2>七个星阵组的当前积分</h2>
+        <p class="sub" id="boardNoteText"></p>
+      </div>
+      <div class="rank-list reveal" id="topBoard"></div>
+      <p class="center mt24 reveal"><a class="btn btn-ghost" href="groups.html">查看完整组榜与六维明细 →</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="motto">踏星笃行　智工守规</div>
+        <p>23 机电一体化“七星班”班级建设展示平台：育人图景 · 七星组榜 · 成长档案 · 荣誉空间 · 活动风采。</p>
+        <p class="small">明线：北斗七星育人维度 ｜ 暗线：国家级非遗“七星舞狮”</p>
+      </div>
+      <div>
+        <h4>快速导航</h4>
+        <p><a href="plan.html">建设方案</a><br>
+           <a href="groups.html">七星组榜</a><br>
+           <a href="growth.html">成长进步</a><br>
+           <a href="honor.html">荣誉空间</a></p>
+      </div>
+      <div>
+        <h4>班级名片</h4>
+        <p>23 机电一体化“七星班”<br>45 人 · 全男生 · 7 个星阵组</p>
+        <p class="small">踏位定桩 · 列阵同心 · 精技上桩</p>
+      </div>
+    </div>
+    <div class="legal">
+      <span>23 机电一体化“七星班” · 德育展示</span>
+      <span>无为而治的界面，有据可查的数据</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/charts.js"></script>
+<script src="assets/js/ui.js"></script>
+<script>
+QXUI.onReady(function () {
+  var U = QXUI, D = U.data, esc = U.esc;
+
+  /* --- 数字概览 --- */
+  var totalActs = D.activities.length;
+  U.qs('#statRow').innerHTML = [
+    ['45', '人', '全班人数 · 男生 45 人'],
+    ['7', '个', '育人维度 · 星阵组'],
+    ['24', '节', '主题班会（六学期）'],
+    ['12', '次', '特色活动（两条线）'],
+    ['31', '项', '集体与个人荣誉']
+  ].map(function (x) {
+    return '<div class="stat"><div class="v num">' + x[0] + '<small>' + x[1] + '</small></div>' +
+      '<div class="k">' + esc(x[2]) + '</div></div>';
+  }).join('');
+
+  /* --- 踏七星桩位条 --- */
+  U.qs('#stepTrack').innerHTML = D.steps.map(function (s, i) {
+    return '<div class="step done"><div class="dot">' + (i + 1) + '</div>' +
+      '<div class="nm">' + esc(s.name) + '</div><div class="st">' + esc(s.star) + '</div></div>';
+  }).join('');
+
+  /* --- 七维卡片 --- */
+  U.qs('#dimGrid').innerHTML = D.dims.map(function (d, i) {
+    return '<article class="card card-flat card-star" data-star="' + (i + 1) + '">' +
+      '<span class="kicker">' + esc(d.star) + '</span>' +
+      '<h3>' + esc(d.name) + '</h3>' +
+      '<p class="muted small mb0">踏七星 · ' + esc(d.hint) + '</p></article>';
+  }).join('');
+
+  /* --- 舞动建设模型 --- */
+  var MEASURES = [
+    ['思政课程序列', '扬一面铸魂育人的旗帜', '天枢星 · 思想政治'],
+    ['多元活动联调', '擂一曲活力奋进的战鼓', '天璇星 · 健康身心'],
+    ['家园建设程序', '布一支携手共进的阵队', '天玑星 · 集体建设'],
+    ['精工打造链路', '拉一根指引进步的劲弦', '天权星 · 职业规划'],
+    ['智慧项目矩阵', '造一颗求真创新的狮球', '玉衡星 · 专业创新'],
+    ['高效提速空间', '搭一处托举卓越的擂台', '开阳星 · 协同育人'],
+    ['品牌凝聚机制', '舞一帧青春闪耀的狮影', '摇光星 · 非遗传承']
+  ];
+  U.qs('#measureGrid').innerHTML = MEASURES.map(function (m, i) {
+    return '<article class="card card-flat"><span class="kicker">措施 ' + (i + 1) + '　' + esc(m[2]) + '</span>' +
+      '<h3>' + esc(m[0]) + '</h3><p class="muted mb0">' + esc(m[1]) + '</p></article>';
+  }).join('');
+
+  /* --- 三阶递进 --- */
+  var STAGES = [
+    ['第一学年', '醒狮启势・筑基守规', '工之始，立规范 —— 先把规矩立住、把人聚住。班级公约全员签署，五项常规全部建台账，45 人全员上岗。'],
+    ['第二学年', '踏星砺技・精工笃学', '工于技，练本领 —— 把技能练实、把方向定准。实训准入、证书考取、竞赛梯队、生涯规划书逐人落地。'],
+    ['第三学年', '狮舞摘星・匠展风华', '匠于心，赴时代 —— 把本事拿出来、把精神传下去。跟岗实习、非遗宣讲、传帮带结业，全员完成独立讲述。']
+  ];
+  U.qs('#stageList').innerHTML = STAGES.map(function (s) {
+    return '<div class="tl-item"><div class="when">' + esc(s[0]) + '</div>' +
+      '<h4>' + esc(s[1]) + '</h4><p>' + esc(s[2]) + '</p></div>';
+  }).join('');
+
+  /* --- 全班七维趋势 --- */
+  var labels = D.meta.termShort;
+  var series = labels.map(function (_, t) {
+    return U.r1(U.avg(D.students.map(function (s) { return U.termAvg(s, t); })));
+  });
+  QXChart.line(U.qs('#classTrend'), {
+    labels: labels,
+    series: [{ name: '全班七维均值', color: '#C6281C', values: series }],
+    min: 40, max: 100
+  });
+
+  /* --- 两条特色活动线 --- */
+  function acts(series) {
+    return D.activities.filter(function (a) { return a.kind === '特色' && a.series === series; });
+  }
+  U.qs('#qxList').innerHTML = acts('启星向新').map(function (a) {
+    return '<div class="hl-item"><span class="k">' + esc(a.termShort) + '</span>' +
+      '<span class="v">' + esc(a.title) + '</span></div>';
+  }).join('');
+  U.qs('#cyList').innerHTML = acts('承星传韵').map(function (a) {
+    return '<div class="hl-item"><span class="k">' + esc(a.termShort) + '</span>' +
+      '<span class="v">' + esc(a.title) + '</span></div>';
+  }).join('');
+
+  /* --- 照片墙 --- */
+  var PHOTOS = [
+    ['assets/img/lion-train2.jpg', '醒狮社日常训练：舞台身段与步法走位'],
+    ['assets/img/lion-perform.jpg', '校内外展演：红黄双狮对舞'],
+    ['assets/img/lion-train6.jpg', '道具练习：狮头与狮被的持法转换'],
+    ['assets/img/lion-train7.jpg', '列阵排练：按鼓点走位，练“列阵同心”'],
+    ['assets/img/adult-ceremony.jpg', '十八岁成人礼：着醒狮服装的责任交接'],
+    ['assets/img/sport-banner.jpg', '校运动会入场式：班牌与班旗'],
+    ['assets/img/lion-train4.jpg', '校外社区演出前的现场彩排'],
+    ['assets/img/lion-train8.jpg', '社团合影：11 名本班成员为社团骨干']
+  ];
+  U.qs('#gallery').innerHTML = PHOTOS.map(function (p) {
+    return '<figure><img src="' + p[0] + '" alt="' + esc(p[1]) + '" loading="lazy">' +
+      '<figcaption>' + esc(p[1]) + '</figcaption></figure>';
+  }).join('');
+
+  /* --- 组榜速览 --- */
+  U.qs('#boardNoteText').textContent = D.meta.boardNote;
+  var top = D.board.slice(0, 4);
+  U.qs('#topBoard').innerHTML = top.map(function (b, i) {
+    return '<div class="rank-item top' + (i + 1) + '">' +
+      '<div class="rank-badge num">' + (i + 1) + '</div>' +
+      '<div class="rank-main"><div class="name">' + esc(b.name) +
+        U.chip(b.star, 'chip-gold') + '</div>' +
+        '<div class="meta">组长 ' + esc(b.leader) + ' · ' + b.size + ' 人 · 对应维度：' + esc(b.dim) + '</div>' +
+      '</div>' +
+      '<div class="rank-total"><div class="v num">' + b.total + '</div>' +
+        '<div class="k">综合积分 / 600 · <span class="rank-delta">+' + b.delta + '</span> 进步</div></div>' +
+    '</div>';
+  }).join('');
+});
+</script>
+</body>
+</html>
