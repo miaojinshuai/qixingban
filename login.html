@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>登录 · 23 机电一体化“七星班”</title>
+<meta name="description" content="23 机电一体化“七星班”班级建设展示平台登录页：游客、任课教师、班主任、学生四种身份登录入口。">
+<link rel="icon" href="assets/img/badge.jpg">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/login.css">
+</head>
+<body class="login-page">
+
+<div class="login-wrap">
+
+  <!-- ============ 左：品牌区 ============ -->
+  <section class="login-brand">
+    <p class="lb-eyebrow">国家级非遗“七星舞狮” · 活态传承</p>
+    <h1 class="lb-art">
+      <img src="assets/img/platform-title.png" alt="“七星”为工 · 舞动时代" width="867" height="503">
+    </h1>
+    <p class="lb-motto">踏七星　育精工</p>
+    <p class="lb-class">23 机电一体化“七星班”</p>
+    <ul class="lb-points">
+      <li><b>游客</b>：仅可浏览首页内容</li>
+      <li><b>班主任</b>：完整查看全部页面</li>
+      <li>班级数据仅用于班级建设展示</li>
+    </ul>
+  </section>
+
+  <!-- ============ 右：登录面板 ============ -->
+  <section class="login-panel">
+
+    <div class="lp-session" id="sessionBar" hidden></div>
+
+    <header class="lp-head">
+      <h2>登录平台</h2>
+      <p>请先选择登录身份，再输入账号与密码</p>
+    </header>
+
+    <div class="role-grid" id="roleGrid">
+      <button type="button" class="role-card" data-role="guest" aria-pressed="true">
+        <span class="rc-top">
+          <span class="rc-ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8.2" r="3.4"></circle><path d="M5.2 20c0-3.5 3-6 6.8-6s6.8 2.5 6.8 6"></path>
+            </svg>
+          </span>
+          <span class="rc-name">游客登录</span>
+        </span>
+        <span class="rc-desc">无需账号密码，仅可浏览首页</span>
+      </button>
+
+      <button type="button" class="role-card" data-role="teacher" aria-pressed="false">
+        <span class="rc-top">
+          <span class="rc-ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 5.6A2.6 2.6 0 0 1 6.6 3H19v14.5H6.6A2.6 2.6 0 0 0 4 20.1z"></path><path d="M19 17.5V21H6.6"></path>
+            </svg>
+          </span>
+          <span class="rc-name">任课教师登录</span>
+        </span>
+        <span class="rc-desc">使用任课教师账号登录</span>
+      </button>
+
+      <button type="button" class="role-card" data-role="head" aria-pressed="false">
+        <span class="rc-top">
+          <span class="rc-ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="9" r="5"></circle><path d="m8.6 13.4-1.3 7.1 4.7-2.2 4.7 2.2-1.3-7.1"></path>
+            </svg>
+          </span>
+          <span class="rc-name">班主任登录</span>
+        </span>
+        <span class="rc-desc">完整查看全部页面内容</span>
+      </button>
+
+      <button type="button" class="role-card" data-role="student" aria-pressed="false">
+        <span class="rc-top">
+          <span class="rc-ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m2.2 8.6 9.8-4.4 9.8 4.4-9.8 4.4z"></path><path d="M6.2 11v4.4c0 1.5 2.6 2.6 5.8 2.6s5.8-1.1 5.8-2.6V11"></path>
+            </svg>
+          </span>
+          <span class="rc-name">学生登录</span>
+        </span>
+        <span class="rc-desc">查看本人成长与自查数据</span>
+      </button>
+    </div>
+
+    <form id="loginForm" autocomplete="off" novalidate>
+      <div class="field" id="fieldUser">
+        <label for="accUser">账号</label>
+        <input id="accUser" name="user" type="text" placeholder="请输入账号" autocomplete="off" spellcheck="false">
+      </div>
+      <div class="field" id="fieldPass">
+        <label for="accPass">密码</label>
+        <input id="accPass" name="pass" type="password" placeholder="请输入密码" autocomplete="new-password">
+      </div>
+
+      <p class="login-hint hide" id="loginHint"></p>
+
+      <button class="login-submit" id="loginSubmit" type="submit">游客登录</button>
+      <p class="login-err" id="loginErr" role="alert"></p>
+    </form>
+
+    <p class="login-foot">
+      登录即表示同意仅将本平台内容用于班级建设展示<br>
+      © 2026 23 机电一体化“七星班”
+    </p>
+  </section>
+</div>
+
+<!-- ============ 页面最下方署名 ============ -->
+<footer class="login-bottom">
+  <p class="lbt-main">数智成长平台</p>
+  <p class="lbt-sub">七星班数字阵地</p>
+</footer>
+
+<script src="assets/js/auth.js"></script>
+<script>
+(function () {
+  'use strict';
+  var A = window.QXAuth;
+
+  /* 退出登录：login.html?logout=1 */
+  A.handleLogoutParam();
+
+  var ROLES = ['guest', 'teacher', 'head', 'student'];
+  var cards = {};
+  ROLES.forEach(function (r) { cards[r] = document.querySelector('.role-card[data-role="' + r + '"]'); });
+
+  var form    = document.getElementById('loginForm');
+  var fUser   = document.getElementById('fieldUser');
+  var fPass   = document.getElementById('fieldPass');
+  var accUser = document.getElementById('accUser');
+  var accPass = document.getElementById('accPass');
+  var btn     = document.getElementById('loginSubmit');
+  var hint    = document.getElementById('loginHint');
+  var err     = document.getElementById('loginErr');
+
+  var current = 'guest';
+
+  function select(role) {
+    current = role;
+    ROLES.forEach(function (r) {
+      cards[r].setAttribute('aria-pressed', r === role ? 'true' : 'false');
+    });
+    err.textContent = '';
+
+    if (role === 'guest') {
+      fUser.classList.add('hide');
+      fPass.classList.add('hide');
+      hint.classList.remove('hide');
+      hint.innerHTML = '游客登录无需账号密码。登录后可浏览<b>首页</b>内容，其余页面会提示「请登录」。';
+      btn.textContent = '游客登录';
+    } else {
+      fUser.classList.remove('hide');
+      fPass.classList.remove('hide');
+      hint.classList.add('hide');
+      hint.innerHTML = '';
+      btn.textContent = '登 录';
+    }
+  }
+
+  ROLES.forEach(function (r) {
+    cards[r].addEventListener('click', function () { select(r); });
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    err.textContent = '';
+
+    var res = A.login(current, accUser.value, accPass.value);
+
+    /* 任课教师 / 学生：点击登录不做任何响应 */
+    if (res.silent) return;
+
+    if (res.ok) {
+      location.replace('index.html');
+      return;
+    }
+    err.textContent = res.msg || '登录失败，请重试。';
+  });
+
+  /* 已登录时给出提示与退出入口 */
+  var s = A.session();
+  if (s) {
+    var bar = document.getElementById('sessionBar');
+    bar.hidden = false;
+    bar.innerHTML = '当前已登录：<b>' + A.roleLabel(s.role) +
+      (s.name ? ' · ' + s.name : '') + '</b>' +
+      '<a href="index.html">继续访问</a>' +
+      '<a href="?logout=1">退出登录</a>';
+  }
+
+  select('guest');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+/* ============================================================
+   七星班班级网站 · 登录页
+   ============================================================ */
+
+body.login-page {
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 26px;
+  padding: 36px 20px;
+  background:
+    radial-gradient(120% 120% at 84% 4%, #C93A1E 0%, #A81F14 44%, #7C130D 100%);
+  background-attachment: fixed;
+  position: relative;
+  overflow-x: hidden;
+}
+body.login-page::before {
+  content: "";
+  position: fixed; inset: 0; pointer-events: none;
+  background-image:
+    radial-gradient(1.7px 1.7px at 12% 20%, rgba(255, 238, 190, .7), transparent),
+    radial-gradient(1.4px 1.4px at 30% 66%, rgba(255, 238, 190, .5), transparent),
+    radial-gradient(1.8px 1.8px at 48% 14%, rgba(255, 238, 190, .6), transparent),
+    radial-gradient(1.3px 1.3px at 68% 74%, rgba(255, 238, 190, .42), transparent),
+    radial-gradient(1.6px 1.6px at 82% 30%, rgba(255, 238, 190, .55), transparent),
+    radial-gradient(1.2px 1.2px at 92% 60%, rgba(255, 238, 190, .4), transparent);
+}
+body.login-page::after {
+  content: "";
+  position: fixed; left: -160px; top: -140px; width: 560px; height: 560px;
+  border-radius: 50%; pointer-events: none;
+  background: conic-gradient(from 200deg, rgba(245, 197, 24, .26), transparent 55%);
+  filter: blur(8px);
+}
+
+.login-wrap {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1020px;
+  display: grid;
+  grid-template-columns: 1.06fr 0.94fr;
+  background: #FFF9EC;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(245, 197, 24, .55);
+  box-shadow: 0 40px 90px rgba(0, 0, 0, .45);
+}
+
+/* ---------------- 左：品牌区 ---------------- */
+.login-brand {
+  position: relative;
+  padding: 40px 34px;
+  color: #FFF3D6;
+  background: radial-gradient(125% 125% at 80% 6%, #A81F14 0%, #8E1610 46%, #6E0F0A 100%);
+  display: flex; flex-direction: column; justify-content: center;
+  overflow: hidden;
+}
+.login-brand::after {
+  content: "";
+  position: absolute; right: -110px; bottom: -130px;
+  width: 320px; height: 320px; border-radius: 50%;
+  background: conic-gradient(from 150deg, rgba(245, 197, 24, .3), transparent 60%);
+  filter: blur(6px);
+}
+.login-brand > * { position: relative; z-index: 1; }
+/* 书法主视觉：「“七星”为工 · 舞动时代」，做成镶金边的题字牌 */
+.lb-art {
+  margin: 0 0 20px;
+  padding: 9px 11px;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid rgba(245, 197, 24, .62);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .3);
+  position: relative;
+}
+.lb-art::after {
+  content: "";
+  position: absolute; inset: 4px;
+  border: 1px solid rgba(224, 160, 32, .38);
+  border-radius: 12px;
+  pointer-events: none;
+}
+.lb-art img { width: 100%; height: auto; display: block; border-radius: 8px; }
+.lb-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12.5px; letter-spacing: .2em; font-weight: 700;
+  color: #F5C518; margin: 0 0 12px;
+}
+.lb-eyebrow::before { content: ""; width: 20px; height: 2px; background: #F5C518; border-radius: 2px; }
+.lb-motto {
+  font-size: 24px; font-weight: 700; letter-spacing: .14em;
+  color: #F5C518; margin: 0 0 8px;
+}
+.lb-class {
+  font-size: 14px; letter-spacing: .08em;
+  color: rgba(255, 246, 224, .82); margin: 0 0 20px;
+}
+.lb-points { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+.lb-points li {
+  font-size: 13px; color: rgba(255, 246, 224, .84);
+  padding-left: 16px; position: relative;
+}
+.lb-points li::before {
+  content: ""; position: absolute; left: 0; top: 8px;
+  width: 6px; height: 6px; border-radius: 50%; background: #F5C518;
+}
+.lb-points b { color: #fff; }
+
+/* ---------------- 右：登录面板 ---------------- */
+.login-panel { padding: 42px 40px 34px; }
+
+.lp-session {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  background: #FDF3D8; border: 1px solid #F0CE7A; border-radius: 12px;
+  padding: 10px 14px; margin-bottom: 20px; font-size: 13px; color: #6E5528;
+}
+.lp-session[hidden] { display: none; }
+.lp-session b { color: #8E1610; }
+.lp-session a {
+  font-weight: 700; color: #C6281C;
+  border: 1px solid #F0CE7A; background: #fff; border-radius: 999px;
+  padding: 3px 12px; font-size: 12.5px;
+}
+.lp-session a:first-of-type { margin-left: auto; }
+.lp-session a:hover { text-decoration: none; background: #FDECE7; }
+
+.lp-head { margin-bottom: 20px; }
+.lp-head h2 { font-size: 25px; color: #8E1610; margin: 0 0 6px; letter-spacing: .04em; }
+.lp-head p { margin: 0; font-size: 13.5px; color: #9C8459; }
+
+/* 角色选择 */
+.role-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-bottom: 22px; }
+.role-card {
+  display: flex; flex-direction: column; gap: 8px;
+  padding: 14px 15px; text-align: left; cursor: pointer;
+  border: 1.5px solid #E4CE9B; border-radius: 16px; background: #fff;
+  transition: border-color .18s ease, background .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+.role-card:hover { border-color: #E0A020; background: #FDF3D8; transform: translateY(-1px); }
+.role-card[aria-pressed="true"] {
+  border-color: #C6281C; background: #FDECE7;
+  box-shadow: 0 10px 24px rgba(198, 40, 28, .16);
+}
+.rc-top { display: flex; align-items: center; gap: 10px; }
+.rc-ic {
+  width: 32px; height: 32px; border-radius: 10px; flex: none;
+  display: grid; place-items: center;
+  background: #FDF3D8; color: #A9740F;
+  transition: background .18s ease, color .18s ease;
+}
+.rc-ic svg { width: 18px; height: 18px; }
+.role-card[aria-pressed="true"] .rc-ic { background: #C6281C; color: #fff; }
+.rc-name { font-size: 15px; font-weight: 700; color: #3A2510; line-height: 1.3; }
+.rc-desc { font-size: 12.5px; color: #9C8459; line-height: 1.5; }
+.role-card[aria-pressed="true"] .rc-desc { color: #B47814; }
+
+/* 表单 */
+.field { margin-bottom: 14px; }
+.field label { display: block; font-size: 13px; font-weight: 700; color: #6E5528; margin-bottom: 6px; }
+.field input {
+  width: 100%; height: 48px; padding: 0 14px;
+  border: 1.5px solid #E4CE9B; border-radius: 12px;
+  background: #fff; font-size: 15px; color: #3A2510;
+  outline: none; transition: border-color .18s ease, box-shadow .18s ease;
+}
+.field input::placeholder { color: #C4AE86; }
+.field input:focus { border-color: #E0A020; box-shadow: 0 0 0 4px rgba(245, 197, 24, .2); }
+.field.hide { display: none; }
+
+.login-hint {
+  margin: 2px 0 14px; font-size: 12.5px; color: #9C8459;
+  background: #FBF1DA; border-radius: 10px; padding: 9px 12px; line-height: 1.7;
+}
+.login-hint.hide { display: none; }
+
+.login-submit {
+  width: 100%; height: 50px; border: none; border-radius: 14px;
+  background: linear-gradient(135deg, #E0391F, #C6281C);
+  color: #fff; font-size: 16.5px; font-weight: 700; letter-spacing: .08em;
+  cursor: pointer; box-shadow: 0 12px 26px rgba(198, 40, 28, .32);
+  transition: filter .18s ease, transform .12s ease, box-shadow .18s ease;
+}
+.login-submit:hover { filter: brightness(1.07); }
+.login-submit:active { transform: translateY(1px); box-shadow: 0 6px 16px rgba(198, 40, 28, .3); }
+
+.login-err {
+  min-height: 20px; margin: 12px 0 0; font-size: 13px; font-weight: 700;
+  color: #C6281C; text-align: center;
+}
+.login-err:empty { margin: 0; }
+
+.login-foot {
+  margin: 18px 0 0; padding-top: 16px;
+  border-top: 1px solid #F2E3C2;
+  font-size: 12px; color: #B09A6E; text-align: center; line-height: 1.7;
+}
+
+/* ---------------- 页面最下方署名 ---------------- */
+.login-bottom {
+  position: relative; z-index: 1;
+  text-align: center;
+  padding: 4px 0 6px;
+}
+.login-bottom::before {
+  content: "";
+  display: block; width: 72px; height: 2px; margin: 0 auto 16px;
+  background: linear-gradient(90deg, transparent, #F5C518, transparent);
+  border-radius: 2px;
+}
+.lbt-main {
+  margin: 0 0 7px;
+  font-size: 21px; font-weight: 700;
+  letter-spacing: .3em; text-indent: .3em;
+  color: #F5C518;
+  text-shadow: 0 4px 18px rgba(0, 0, 0, .35);
+}
+.lbt-sub {
+  margin: 0;
+  font-size: 13px; letter-spacing: .34em; text-indent: .34em;
+  color: rgba(255, 246, 224, .74);
+}
+
+/* ---------------- 响应式 ---------------- */
+@media (max-width: 880px) {
+  .login-wrap { grid-template-columns: 1fr; max-width: 560px; }
+  .login-brand { padding: 28px 26px; }
+  .lb-art { margin-bottom: 16px; }
+  .lb-motto { font-size: 21px; }
+  .lb-points { display: none; }
+  .login-panel { padding: 30px 26px 26px; }
+  .lbt-main { font-size: 18px; }
+}
+@media (max-width: 520px) {
+  body.login-page { padding: 18px 12px; gap: 20px; }
+  .role-grid { gap: 10px; }
+  .role-card { padding: 12px; }
+  .rc-name { font-size: 14px; }
+  .rc-desc { font-size: 11.5px; }
+  .lbt-main { font-size: 16px; letter-spacing: .22em; text-indent: .22em; }
+  .lbt-sub { font-size: 12px; letter-spacing: .24em; text-indent: .24em; }
+}
