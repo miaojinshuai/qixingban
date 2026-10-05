@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>成长进步 · 23 机电一体化“七星班”</title>
+<title>成长进步 · 24 机电一体化“七星班”</title>
 <meta name="description" content="个人成长进步：七维雷达、六学期成长曲线与成长档案。只呈现本人数据，不做全班学业成绩排名。">
 <link rel="icon" href="assets/img/badge.jpg">
 <link rel="stylesheet" href="assets/css/base.css">
@@ -18,7 +18,7 @@
   <div class="wrap bar">
     <a class="brand" href="index.html">
       <img src="assets/img/badge.jpg" alt="七星班班徽">
-      <span class="t"><b>23 机电一体化“七星班”</b><span>踏七星　育精工</span></span>
+      <span class="t"><b>24 机电一体化“七星班”</b><span>踏七星　育精工</span></span>
     </a>
     <button class="nav-toggle" type="button" aria-label="展开导航" aria-expanded="false"><span></span></button>
     <nav class="nav" aria-label="站点导航">
@@ -152,7 +152,7 @@
     <div class="cols">
       <div>
         <div class="motto">踏七星　育精工</div>
-        <p>23 机电一体化“七星班”班级建设展示平台：育人图景 · 七星组榜 · 成长档案 · 荣誉空间 · 活动风采。</p>
+        <p>24 机电一体化“七星班”班级建设展示平台：育人图景 · 七星组榜 · 成长档案 · 荣誉空间 · 活动风采。</p>
         <p class="small">明线：北斗七星育人维度 ｜ 暗线：国家级非遗“七星舞狮”</p>
       </div>
       <div>
@@ -162,12 +162,12 @@
       </div>
       <div>
         <h4>班级名片</h4>
-        <p>23 机电一体化“七星班”<br>45 人 · 全男生 · 7 个星阵组</p>
+        <p>24 机电一体化“七星班”<br>45 人 · 全男生 · 7 个星阵组</p>
         <p class="small">踏位定桩 · 列阵同心 · 精技上桩</p>
       </div>
     </div>
     <div class="legal">
-      <span>23 机电一体化“七星班” · 德育展示</span>
+      <span>24 机电一体化“七星班” · 德育展示</span>
       <span>跟昨天的自己比</span>
     </div>
   </div>
@@ -193,14 +193,28 @@ QXUI.onReady(function () {
       }).join('') + '</optgroup>';
   }).join('');
 
-  var saved = U.store.get('studentId', D.students[0].id);
+  /* 学生身份登录时，本页只能呈现本人数据：身份切换控件直接锁掉 */
+  var me = (window.QXAuth && QXAuth.me) ? QXAuth.me() : null;
+  var mine = me ? D.students.filter(function (s) {
+    return (me.sid && s.sid === me.sid) || s.name === me.name;
+  })[0] : null;
+
+  var saved = mine ? mine.id : U.store.get('studentId', D.students[0].id);
   if (!U.student(saved)) saved = D.students[0].id;
   sel.value = String(saved);
 
-  sel.addEventListener('change', function () {
-    U.store.set('studentId', Number(sel.value));
-    render();
-  });
+  if (mine) {
+    /* 学生：不给选择器，只留一行说明 */
+    sel.disabled = true;
+    if (sel.parentNode) {
+      sel.parentNode.innerHTML = '<span class="qx-self-tag">本人数据专属视图 · ' + esc(mine.name) + '</span>';
+    }
+  } else {
+    sel.addEventListener('change', function () {
+      U.store.set('studentId', Number(sel.value));
+      render();
+    });
+  }
 
   /* --- 维度切换按钮 --- */
   U.qs('#dimSeg').innerHTML =

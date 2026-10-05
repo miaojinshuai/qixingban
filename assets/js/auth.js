@@ -4,7 +4,8 @@
    角色与权限：
      guest 游客      —— 只能看首页（index.html），其余页面显示「请登录」
      head  班主任    —— 全部页面完整可见（账号 马志豪）
-     teacher 任课教师 / student 学生 —— 当前未开放，登录按钮无响应
+     student 学生    —— 只能看本人成长与自查两页（账号 李世博）
+     teacher 任课教师 —— 当前未开放，登录按钮无响应
    未登录访问任何页面都会转到 login.html。
    登录态存 localStorage，点「退出」即清除。
    ============================================================ */
@@ -14,17 +15,31 @@ window.QXAuth = (function () {
   var KEY = 'qx_auth_v1';
   var LOGIN_PAGE = 'login.html';
 
-  /* 游客可访问的页面（'' 为站点根目录） */
-  var GUEST_PAGES = ['index.html', ''];
+  /* 各角色可访问的页面（'' 为站点根目录）。head 通配全部页面，不在此表内。 */
+  var ROLE_PAGES = {
+    guest: ['index.html', ''],
+    student: ['student.html', 'growth.html']
+  };
 
-  /* 角色开放开关：teacher / student 置 false 时登录页点击无响应 */
-  var ENABLED = { guest: true, head: true, teacher: false, student: false };
+  /* 角色开放开关：置 false 时登录页点击无响应 */
+  var ENABLED = { guest: true, head: true, teacher: false, student: true };
 
   var ROLE_LABEL = { guest: '游客', head: '班主任', teacher: '任课教师', student: '学生' };
+
+  /* 拦截层里说明「本人可看什么」的一句话 */
+  var ROLE_SCOPE = {
+    guest: '当前身份为<b>游客</b>，仅可浏览首页内容。',
+    student: '当前身份为<b>学生</b>，仅可查看本人成长与自查数据。'
+  };
 
   /* 班主任凭据（Base64 编码，静态站点无法真正加密，仅避免明文直读） */
   var HEAD_USER = '6ams5b+X6LGq';
   var HEAD_PASS = 'cWF6V1NYMTIz';
+
+  /* 学生凭据：李世博 / 147369（同一学生，只能看本人的成长与自查数据） */
+  var STU_USER = '5p2O5LiW5Y2a';
+  var STU_PASS = 'MTQ3MzY5';
+  var STU_SID = '2325502001';
 
   function dec(s) {
     try { return decodeURIComponent(escape(atob(s))); } catch (e) { return ''; }
@@ -40,9 +55,11 @@ window.QXAuth = (function () {
     } catch (e) { return null; }
   }
 
-  function setSession(role, name) {
+  function setSession(role, name, sid) {
     try {
-      localStorage.setItem(KEY, JSON.stringify({ role: role, name: name || '', ts: Date.now() }));
+      localStorage.setItem(KEY, JSON.stringify({
+        role: role, name: name || '', sid: sid || '', ts: Date.now()
+      }));
     } catch (e) {}
   }
 
@@ -58,18 +75,23 @@ window.QXAuth = (function () {
   function login(role, user, pass) {
     if (!ENABLED[role]) return { ok: false, silent: true };
     if (role === 'guest') {
-      setSession('guest', '游客');
+      setSession('guest', '');
       return { ok: true, role: 'guest' };
     }
-    if (role === 'head') {
+    if (role === 'head' || role === 'student') {
       var u = String(user == null ? '' : user).trim();
       var p = String(pass == null ? '' : pass);
       if (!u && !p) return { ok: false, msg: '请输入账号与密码。' };
       if (!u) return { ok: false, msg: '请输入账号。' };
       if (!p) return { ok: false, msg: '请输入密码。' };
-      if (u === dec(HEAD_USER) && p === dec(HEAD_PASS)) {
+
+      if (role === 'head' && u === dec(HEAD_USER) && p === dec(HEAD_PASS)) {
         setSession('head', u);
-        return { ok: true, role: 'head', name: u };
+        return { ok: true, role: 'head', name: u, home: 'index.html' };
+      }
+      if (role === 'student' && u === dec(STU_USER) && p === dec(STU_PASS)) {
+        setSession('student', u, STU_SID);
+        return { ok: true, role: 'student', name: u, sid: STU_SID, home: 'student.html' };
       }
       return { ok: false, msg: '账号或密码不正确，请核对后重试。' };
     }
@@ -84,8 +106,19 @@ window.QXAuth = (function () {
 
   function canView(page, s) {
     if (!s) return false;
-    if (s.role === 'guest') return GUEST_PAGES.indexOf(page) >= 0;
-    return true;
+    if (s.role === 'head') return true;
+    var allow = ROLE_PAGES[s.role];
+    return !!allow && allow.indexOf(page) >= 0;
+  }
+
+  /* 该角色登录后的落地页 */
+  function homePage(role) {
+    return ROLE_PAGES[role] ? ROLE_PAGES[role][0] : 'index.html';
+  }
+
+  /* 拦截层「次要按钮」的去向：回到该角色能看的页面 */
+  function homeLabel(role) {
+    return role === 'student' ? '返回自查页' : '返回首页';
   }
 
   function logoutTo() { location.replace(LOGIN_PAGE); }
@@ -126,6 +159,10 @@ window.QXAuth = (function () {
     '.qx-who a{display:inline-flex;align-items:center;height:24px;padding:0 11px;border-radius:999px;background:#fff;',
     'color:#C6281C;font-weight:700;font-size:12.5px;}',
     '.qx-who a:hover{text-decoration:none;background:#FDECE7;}',
+
+    /* ---- 「本人数据专属视图」标记（学生身份下替代身份切换控件） ---- */
+    '.qx-self-tag{display:inline-flex;align-items:center;height:32px;padding:0 14px;border-radius:999px;',
+    'background:#FDF3D8;border:1px solid #F0CE7A;color:#A9740F;font-size:12.5px;font-weight:700;letter-spacing:.04em;}',
     '@media (max-width:900px){.qx-who{display:none}}',
     '@media (max-width:760px){.qx-gate-card{padding:34px 22px 28px}.qx-gate-card h1{font-size:27px}}'
   ].join('');
@@ -152,7 +189,13 @@ window.QXAuth = (function () {
 
   /* ---------------- 「请登录」拦截层 ---------------- */
   function lockPage(s, page) {
-    document.title = '请登录 · 23 机电一体化“七星班”';
+    var role = s && s.role;
+    var isLogged = !!role && role !== 'guest';
+
+    document.title = '请登录 · 24 机电一体化“七星班”';
+
+    /* 已登录但不具备本页权限：说明是「权限不够」，不是「没登录」 */
+    var scope = ROLE_SCOPE[role] || (isLogged ? '' : ROLE_SCOPE.guest);
 
     function render() {
       if (document.getElementById('qxGate')) return;
@@ -161,13 +204,17 @@ window.QXAuth = (function () {
       box.innerHTML =
         '<div class="qx-gate-card">' +
           '<img class="qx-gate-badge" src="assets/img/badge.jpg" alt="七星班班徽">' +
-          '<div class="qx-gate-tag">23 机电一体化“七星班” · 访问受限</div>' +
-          '<h1>请登录</h1>' +
-          '<p class="qx-gate-lead">当前身份为<b>游客</b>，仅可浏览首页内容。<br>' +
-            '本页属于班级内部资料，需使用<b>班主任</b>账号登录后查看。</p>' +
+          '<div class="qx-gate-tag">24 机电一体化“七星班” · 访问受限</div>' +
+          '<h1>' + (isLogged ? '访问受限' : '请登录') + '</h1>' +
+          '<p class="qx-gate-lead">' +
+            (scope ? scope + '<br>' : '') +
+            '本页属于班级内部资料，需使用<b>相应权限</b>的账号登录后查看。</p>' +
           '<div class="qx-gate-acts">' +
-            '<a class="qx-btn qx-btn-primary" href="login.html">前往登录</a>' +
-            '<a class="qx-btn" href="index.html">返回首页</a>' +
+            (isLogged
+              ? '<a class="qx-btn qx-btn-primary" href="' + homePage(role) + '">' + homeLabel(role) + '</a>' +
+                '<a class="qx-btn" href="login.html">切换账号</a>'
+              : '<a class="qx-btn qx-btn-primary" href="login.html">前往登录</a>' +
+                '<a class="qx-btn" href="index.html">返回首页</a>') +
           '</div>' +
           '<p class="qx-gate-foot">如需查看班级内部资料，请联系班主任获取登录账号。</p>' +
         '</div>';
@@ -187,8 +234,10 @@ window.QXAuth = (function () {
     var box = document.createElement('div');
     box.id = 'qxWho';
     box.className = 'qx-who';
+    /* 游客没有姓名，避免出现「游客 游客」 */
+    var showName = s.name && s.name !== roleLabel(s.role);
     box.innerHTML = '<span class="r">' + esc(roleLabel(s.role)) + '</span>' +
-      (s.name ? '<span class="n">' + esc(s.name) + '</span>' : '') +
+      (showName ? '<span class="n">' + esc(s.name) + '</span>' : '') +
       '<a href="' + LOGIN_PAGE + '?logout=1">退出</a>';
     bar.appendChild(box);
   }
@@ -225,6 +274,12 @@ window.QXAuth = (function () {
     guard(self.getAttribute('data-page') || pageName());
   }
 
+  /* 学生身份下，页面只能呈现本人数据：返回 {name, sid}，其他角色返回 null */
+  function me() {
+    var s = session();
+    return (s && s.role === 'student') ? { name: s.name, sid: s.sid || '' } : null;
+  }
+
   return {
     session: session,
     setSession: setSession,
@@ -235,6 +290,9 @@ window.QXAuth = (function () {
     roleLabel: roleLabel,
     canView: canView,
     pageName: pageName,
+    homePage: homePage,
+    homeLabel: homeLabel,
+    me: me,
     handleLogoutParam: handleLogoutParam
   };
 })();

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>登录 · 23 机电一体化“七星班”</title>
-<meta name="description" content="23 机电一体化“七星班”班级建设展示平台登录页：游客、任课教师、班主任、学生四种身份登录入口。">
+<title>登录 · 24 机电一体化“七星班”</title>
+<meta name="description" content="24 机电一体化“七星班”班级建设展示平台登录页：游客、任课教师、班主任、学生四种身份登录入口。">
 <link rel="icon" href="assets/img/badge.jpg">
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/login.css">
@@ -20,10 +20,8 @@
       <img src="assets/img/platform-title.png" alt="“七星”为工 · 舞动时代" width="867" height="503">
     </h1>
     <p class="lb-motto">踏七星　育精工</p>
-    <p class="lb-class">23 机电一体化“七星班”</p>
+    <p class="lb-class">24 机电一体化“七星班”</p>
     <ul class="lb-points">
-      <li><b>游客</b>：仅可浏览首页内容</li>
-      <li><b>班主任</b>：完整查看全部页面</li>
       <li>班级数据仅用于班级建设展示</li>
     </ul>
   </section>
@@ -106,7 +104,7 @@
 
     <p class="login-foot">
       登录即表示同意仅将本平台内容用于班级建设展示<br>
-      © 2026 23 机电一体化“七星班”
+      © 2026 24 机电一体化“七星班”
     </p>
   </section>
 </div>
@@ -177,7 +175,8 @@
     if (res.silent) return;
 
     if (res.ok) {
-      location.replace('index.html');
+      /* 各角色落到自己能看的第一个页面：班主任 → 首页，学生 → 学生自查 */
+      location.replace(res.home || A.homePage(res.role));
       return;
     }
     err.textContent = res.msg || '登录失败，请重试。';
@@ -188,9 +187,10 @@
   if (s) {
     var bar = document.getElementById('sessionBar');
     bar.hidden = false;
+    var showName = s.name && s.name !== A.roleLabel(s.role);
     bar.innerHTML = '当前已登录：<b>' + A.roleLabel(s.role) +
-      (s.name ? ' · ' + s.name : '') + '</b>' +
-      '<a href="index.html">继续访问</a>' +
+      (showName ? ' · ' + s.name : '') + '</b>' +
+      '<a href="' + A.homePage(s.role) + '">继续访问</a>' +
       '<a href="?logout=1">退出登录</a>';
   }
 
