@@ -3,7 +3,7 @@
    ------------------------------------------------------------
    角色与权限：
      guest 游客      —— 只能看首页（index.html），其余页面显示「请登录」
-     head  班主任    —— 全部页面完整可见（账号 马志豪）
+     head  班主任    —— 全部页面完整可见（账号 马志豪 / admin）
      student 学生    —— 只能看本人成长与自查两页（账号 李世博）
      teacher 任课教师 —— 当前未开放，登录按钮无响应
    未登录访问任何页面都会转到 login.html。
@@ -32,9 +32,14 @@ window.QXAuth = (function () {
     student: '当前身份为<b>学生</b>，仅可查看本人成长与自查数据。'
   };
 
-  /* 班主任凭据（Base64 编码，静态站点无法真正加密，仅避免明文直读） */
-  var HEAD_USER = '6ams5b+X6LGq';
-  var HEAD_PASS = 'cWF6V1NYMTIz';
+  /* 班主任凭据（Base64 编码，静态站点无法真正加密，仅避免明文直读）
+     可登录的班主任账号：
+       · 马志豪 / qazWSX123  —— 班主任本人
+       · admin  / 123456     —— 评委演示账号 */
+  var HEAD_ACCOUNTS = [
+    { u: '6ams5b+X6LGq', p: 'cWF6V1NYMTIz' },  /* 马志豪 */
+    { u: 'YWRtaW4=', p: 'MTIzNDU2' }           /* admin / 123456 */
+  ];
 
   /* 学生凭据：李世博 / 147369（同一学生，只能看本人的成长与自查数据） */
   var STU_USER = '5p2O5LiW5Y2a';
@@ -85,9 +90,13 @@ window.QXAuth = (function () {
       if (!u) return { ok: false, msg: '请输入账号。' };
       if (!p) return { ok: false, msg: '请输入密码。' };
 
-      if (role === 'head' && u === dec(HEAD_USER) && p === dec(HEAD_PASS)) {
-        setSession('head', u);
-        return { ok: true, role: 'head', name: u, home: 'index.html' };
+      if (role === 'head') {
+        for (var i = 0; i < HEAD_ACCOUNTS.length; i++) {
+          if (u === dec(HEAD_ACCOUNTS[i].u) && p === dec(HEAD_ACCOUNTS[i].p)) {
+            setSession('head', u);
+            return { ok: true, role: 'head', name: u, home: 'index.html' };
+          }
+        }
       }
       if (role === 'student' && u === dec(STU_USER) && p === dec(STU_PASS)) {
         setSession('student', u, STU_SID);
